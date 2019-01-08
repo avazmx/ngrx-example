@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyDfzX1EA9pAkibKlNAUawY9d_JK25forjk',
-    authDomain: 'todo-ngrx-8dadb.firebaseapp.com',
-    databaseURL: 'https://todo-ngrx-8dadb.firebaseio.com',
-    projectId: 'todo-ngrx-8dadb',
+    apiKey: 'AIzaSyBquQ2_iXSifVxUUJlrUqo6ht6O5kXX_bY',
+    authDomain: 'todo-ngrx-example.firebaseapp.com',
+    databaseURL: 'https://todo-ngrx-example.firebaseio.com',
+    projectId: 'todo-ngrx-example',
     storageBucket: '',
-    messagingSenderId: '880176871161'
+    messagingSenderId: '4944044197'
   }
 };
 

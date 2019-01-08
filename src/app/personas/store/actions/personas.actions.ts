@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 import { Persona } from '../../../shared/models/persona.model';
 
-export const PERSONA_INITIALIZE = '[Personas]PERSONA_INITIALIZE';
-export const PERSONA_ADD = '[Personas]PERSONA_ADD';
-export const PERSONA_EDIT = '[Personas]PERSONA_EDIT';
-export const PERSONA_DELETE = '[Personas]PERSONA_DELETE';
+export const PERSONA_INITIALIZE = '[Persona]PERSONA_INITIALIZE';
+export const PERSONA_ADD = '[Persona]PERSONA_ADD';
+export const PERSONA_EDIT = '[Persona]PERSONA_EDIT';
+export const PERSONA_DELETE = '[Persona]PERSONA_DELETE';
 
 // ACTIONS
 export class PersonaInitialize implements Action {
@@ -27,7 +27,7 @@ export class PersonaDelete implements Action {
     constructor() { }
 }
 
-export type PersonasActions
+export type All
     = PersonaInitialize
     | PersonaAdd
     | PersonaEdit

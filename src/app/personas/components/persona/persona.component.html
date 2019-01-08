@@ -19,6 +19,10 @@
       <button type="submit" [disabled]="!personaForm.valid">Submit</button>
 
     </form>
+
+    <p>
+      Form Status: {{ personaForm.value | json }}
+    </p>
   </div>
 
   <!-- Personas Array -->
@@ -28,8 +32,8 @@
       <h4>Persona {{i}} </h4>
       <p><b>First name:</b>{{persona.firstName}}</p>
       <p><b>Last name:</b>{{persona.lastName}}</p>
+      <button (click)="deletePersona(persona.key)">delete persona</button>
     </div>
   </div>
-
 
 </div>

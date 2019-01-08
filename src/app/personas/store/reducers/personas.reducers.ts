@@ -2,8 +2,10 @@ import { Persona } from 'src/app/shared/models/persona.model';
 import * as PersonasActions from '../actions/personas.actions';
 import * as fromApp from '../../../store/reducers/app.reducers';
 
-const newState = persona => {
-    return Object.assign(persona);
+
+export type Action = PersonasActions.All;
+const newState = (state, newData) => {
+    return Object.assign({}, state, newData);
 };
 
 export interface FeatureState extends fromApp.AppState {
@@ -14,34 +16,30 @@ export interface State {
     persona: Persona;
 }
 
-const initialState: State = {
-    // Not being used... Shown as an example.
-    // Will be used only as an initial state.
-    persona: {
-        // id: '',
-        firstName: '',
-        lastName: '',
-    }
+const initialState: Persona = {
+    firstName: '',
+    lastName: '',
 };
 
-export function personasReducer(state = initialState, action: PersonasActions.PersonasActions) {
+export function personasReducer(
+    state: Persona = initialState, action: Action) {
+    console.log(action.type, state);
     switch (action.type) {
 
         case PersonasActions.PERSONA_INITIALIZE:
-            return newState({});
+            return newState(state, {});
 
         case PersonasActions.PERSONA_ADD:
-            return newState({
-                // id: action.payload.id,
-                firstName: action.payload.firstName,
-                lastName: action.payload.lastName
+            return newState(state, {
+                firstName: action.payload,
+                lastName: action.payload
             });
 
         case PersonasActions.PERSONA_EDIT:
-            return newState({});
+            return newState(state, {});
 
         case PersonasActions.PERSONA_DELETE:
-            return newState({});
+            return newState(state, {});
 
         default:
             return state;

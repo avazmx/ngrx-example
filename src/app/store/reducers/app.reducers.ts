@@ -7,5 +7,5 @@ export interface AppState {
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-    personas: personasReducers.personasReducer
+    personas: personasReducers.personasReducer,
 };
