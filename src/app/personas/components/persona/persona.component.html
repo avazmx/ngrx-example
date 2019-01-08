@@ -1,0 +1,35 @@
+<h1>
+  Create persona:
+</h1>
+<div id="persona">
+  <!-- Create Persona -->
+  <div class="createPersona">
+    <form [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+
+      <div class="input">
+        <label> First Name: </label>
+        <input type="text" formControlName="firstName" required>
+      </div>
+
+      <div class="input">
+        <label> Last Name: </label>
+        <input type="text" formControlName="lastName" required>
+      </div>
+
+      <button type="submit" [disabled]="!personaForm.valid">Submit</button>
+
+    </form>
+  </div>
+
+  <!-- Personas Array -->
+  <div class="personas">
+    <h1>Personas</h1>
+    <div *ngFor="let persona of personas; let i = index">
+      <h4>Persona {{i}} </h4>
+      <p><b>First name:</b>{{persona.firstName}}</p>
+      <p><b>Last name:</b>{{persona.lastName}}</p>
+    </div>
+  </div>
+
+
+</div>

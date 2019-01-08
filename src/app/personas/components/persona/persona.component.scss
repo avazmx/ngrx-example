@@ -1,0 +1,32 @@
+#persona {
+    display: flex;
+    justify-content: space-around;
+    .createPersona {
+        .input {
+            padding: 1rem 0;
+            label {
+                font-weight: 600;
+            }
+            input {
+                border: 0;
+                border-bottom: 1px solid #999;
+            }
+        }
+        button {
+            // background: transparent;
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #CCC;
+            font-weight: 600;
+            &:hover {
+                // background: rgba(153, 153, 153, 0.37);
+            }
+        }
+    }
+    .personas {
+        // border: 1px solid #333;
+    }
+}
+
+
