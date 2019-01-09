@@ -6,24 +6,24 @@ import * as fromPersonas from '../../store/reducers/personas.reducers';
 import * as fromPersonasActions from '../../store/actions/personas.actions';
 import { Persona } from 'src/app/shared/models/persona.model';
 import { PersonasService } from '../../services/personas.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'todo-persona',
   templateUrl: './persona.component.html',
   styleUrls: ['./persona.component.scss']
 })
+
 export class PersonaComponent implements OnInit {
   personaForm: FormGroup;
-  personaObject: Persona;
+  personaObject: Persona[];
   personas;
   personaSubscription: Subscription;
   personas$: Observable<Persona>;
 
   constructor(private fb: FormBuilder,
     private store: Store<fromPersonas.State>,
-    private personasService: PersonasService) {
-
-  }
+    private personasService: PersonasService) { }
 
   ngOnInit() {
     this.personaForm = this.fb.group({
@@ -32,31 +32,31 @@ export class PersonaComponent implements OnInit {
     });
 
     // Subscribe to the store in order to get the updated object.
-    // this.personaSubscription = this.store.select('personas').subscribe(personaSubscripted => {
-    //   this.personaObject = personaSubscripted;
-    // }, err => {
-    //   console.log('Error subscribing personas: ' + err);
-    // });
     this.personas$ = this.store.select('persona');
     console.log(this.personas$);
 
     // get Personas
-    this.personasService.getPersonas().subscribe(personas => {
+    this.personasService.getPersonas().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(personas => {
       this.personas = personas;
       console.log(this.personas);
-    }, err => {
-      // console.log('Error getting personas: ' + JSON.stringify(err));
-      console.log('Error getting personas: ');
-      console.log(err);
+    });
+
+    this.personaForm.valueChanges.subscribe(data => {
+      console.log(data);
+      this.store.dispatch(new fromPersonasActions.PersonaAdd(data));
+      console.log(this.store.dispatch(new fromPersonasActions.PersonaAdd(data)));
     });
   }
 
   onSubmit() {
     this.personaObject = this.personaForm.value;
     console.log('Persona added from form: ' + JSON.stringify(this.personaObject));
-    // this.store.dispatch(new fromPersonasActions.PersonaAdd(this.personaObject));
-    // console.log('Persona added to store: ' + JSON.stringify(this.personaObject));
-    this.personasService.addPersona(this.personaObject);
+    this.personasService.addPersona(this.personaForm.value);
+    console.log(this.personaObject);
   }
 
   deletePersona(persona) {

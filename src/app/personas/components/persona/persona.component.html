@@ -29,7 +29,7 @@
   <div class="personas">
     <h1>Personas</h1>
     <div *ngFor="let persona of personas; let i = index">
-      <h4>Persona {{i}} </h4>
+      <h4>Persona {{ i + 1 }} </h4>
       <p><b>First name:</b>{{persona.firstName}}</p>
       <p><b>Last name:</b>{{persona.lastName}}</p>
       <button (click)="deletePersona(persona.key)">delete persona</button>

@@ -17,7 +17,7 @@ export class PersonasService {
    */
   getPersonas() {
     this.personasList = this.fb.list('personas');
-    return this.personasList.snapshotChanges();
+    return this.personasList;
   }
 
   /**

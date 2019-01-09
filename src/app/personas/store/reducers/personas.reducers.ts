@@ -22,7 +22,7 @@ const initialState: Persona = {
 };
 
 export function personasReducer(
-    state: Persona = initialState, action: Action) {
+    state: any = initialState, action: Action): State {
     console.log(action.type, state);
     switch (action.type) {
 

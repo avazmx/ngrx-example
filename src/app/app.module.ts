@@ -13,6 +13,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers/app.reducers';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     StoreRouterConnectingModule,
     AngularFireModule.initializeApp(environment.firebase, 'personas'),
     AngularFireDatabaseModule,
+    StoreDevtoolsModule.instrument({ })
   ],
   providers: [],
   bootstrap: [AppComponent]
